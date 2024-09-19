@@ -1,7 +1,7 @@
 "use server";
 
 import { unifiedSchema } from "./schema";
-import { createClient } from '@/lib/supabase/server';
+import { createClient } from '../../lib/supabase/server';
 import { revalidatePath } from "next/cache";
 
 export async function submitForm(data: Record<string, any>): Promise<{ error?: string }> {

@@ -1,11 +1,11 @@
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '../../components/ui/form';
 import { useNewTattooFormStore } from "./store";
-import { Button } from '@/components/ui/button';
+import { Button } from '../../components/ui/button';
 import { useForm } from 'react-hook-form';
 import { beforeProcedureSchema } from './schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
 import { Fragment } from 'react';
 
 type BeforeProcedureFormFields = 'beforeProcedureRQ1' | 'beforeProcedureRQ2' | 'beforeProcedureRQ3' | 'beforeProcedureRQ4';
@@ -84,7 +84,7 @@ export const BeforeProcedureForm = () => {
                     </Fragment>
                 ))}
                 <div className="flex gap-4 w-1/2">
-                    <Button type="button" onClick={back} className="w-1/2">Anterior</Button>
+                    <Button type="button" variant="outline" onClick={back} className="w-1/2">Anterior</Button>
                     <Button type="submit" className="w-1/2">Próximo</Button>
                 </div>
             </form>

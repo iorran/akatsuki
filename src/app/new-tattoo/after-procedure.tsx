@@ -1,12 +1,12 @@
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '../../components/ui/form';
 import { useNewTattooFormStore } from "./store";
-import { Button } from '@/components/ui/button';
+import { Button } from '../../components/ui/button';
 import { useForm } from 'react-hook-form';
 import { afterProcedureSchema } from './schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Fragment } from 'react';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Checkbox } from '../../components/ui/checkbox';
 import { submitForm } from './actions';
 import { toast } from 'sonner';
 
@@ -28,6 +28,7 @@ const QUESTIONS: { name: AfterProcedureFormFields, label: string }[] = [
 
 export const AfterProcedureForm = () => {
     const data = useNewTattooFormStore((state) => state.data);
+    const reset = useNewTattooFormStore((state) => state.reset);
     const setData = useNewTattooFormStore((state) => state.setData);
     const setStep = useNewTattooFormStore((state) => state.setStep);
 
@@ -54,6 +55,7 @@ export const AfterProcedureForm = () => {
             toast.error(error);
             return;
         }
+        reset();
         toast.success("Novo registro criado.");
     };
 
@@ -87,8 +89,8 @@ export const AfterProcedureForm = () => {
                     </Fragment>
                 ))}
                 <div className="flex gap-4 w-1/2">
-                    <Button type="button" onClick={back} className="w-1/2">Anterior</Button>
-                    <Button type="submit" className="w-1/2">Próximo</Button>
+                    <Button type="button" variant="outline" onClick={back} className="w-1/2">Anterior</Button>
+                    <Button type="submit" className="w-1/2">Salvar</Button>
                 </div>
             </form>
         </Form>
