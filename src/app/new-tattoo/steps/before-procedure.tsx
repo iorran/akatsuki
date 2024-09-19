@@ -1,11 +1,11 @@
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '../../components/ui/form';
-import { useNewTattooFormStore } from "./store";
-import { Button } from '../../components/ui/button';
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
+import { useNewTattooFormStore } from "../store";
+import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
-import { beforeProcedureSchema } from './schema';
+import { beforeProcedureSchema } from '../schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Fragment } from 'react';
 
 type BeforeProcedureFormFields = 'beforeProcedureRQ1' | 'beforeProcedureRQ2' | 'beforeProcedureRQ3' | 'beforeProcedureRQ4';

@@ -1,11 +1,7 @@
-import { MonthAgo } from "./tattoo-alerts/month-ago";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
-
-import { Button } from "@/components/ui/button";
-import { WeekAgo } from "./tattoo-alerts/week-ago";
-import { DayAgo } from "./tattoo-alerts/day-ago";
-import { Today } from "./tattoo-alerts/today";
+import { TattooAlerts } from "./tattoo-alerts/tattoo-alerts";
 import { NewTattooDialog } from "./new-tattoo/dialog";
+import { endOfToday, startOfToday, subDays, subMonths, subWeeks } from "date-fns";
 
 export default function Home() {
   return (
@@ -19,16 +15,16 @@ export default function Home() {
           <TabsTrigger value="months">2 Meses</TabsTrigger>
         </TabsList>
         <TabsContent value="today">
-          <Today />
+          <TattooAlerts startDate={startOfToday()} endDate={endOfToday()} />
         </TabsContent>
         <TabsContent value="days">
-          <DayAgo />
+          <TattooAlerts startDate={subDays(new Date(), 2)} endDate={new Date()} />
         </TabsContent>
         <TabsContent value="weeks">
-          <WeekAgo />
+          <TattooAlerts startDate={subWeeks(new Date(), 2)} endDate={new Date()} />
         </TabsContent>
         <TabsContent value="months">
-          <MonthAgo />
+          <TattooAlerts startDate={subMonths(new Date(), 2)} endDate={new Date()} />
         </TabsContent>
       </Tabs>
     </div>

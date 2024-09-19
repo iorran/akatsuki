@@ -1,13 +1,13 @@
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '../../components/ui/form';
-import { useNewTattooFormStore } from "./store";
-import { Button } from '../../components/ui/button';
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
+import { useNewTattooFormStore } from "../store";
+import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
-import { afterProcedureSchema } from './schema';
+import { afterProcedureSchema } from '../schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Fragment } from 'react';
-import { Checkbox } from '../../components/ui/checkbox';
-import { submitForm } from './actions';
+import { Checkbox } from '@/components/ui/checkbox';
+import { submitForm } from '../actions';
 import { toast } from 'sonner';
 
 type AfterProcedureFormFields = 'afterProcedureRQ1' | 'afterProcedureRQ2' | 'afterProcedureRQ3';

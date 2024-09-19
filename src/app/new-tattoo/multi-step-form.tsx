@@ -1,10 +1,10 @@
 "use client"
 
-import { PersonalInformationForm } from "./personal-information-form";
-import { HealthForm } from "./health-form";
+import { PersonalInformationForm } from "./steps/personal-information-form";
+import { HealthForm } from "./steps/health-form";
 import { useNewTattooFormStore } from "./store";
-import { BeforeProcedureForm } from "./before-procedure";
-import { AfterProcedureForm } from "./after-procedure";
+import { BeforeProcedureForm } from "./steps/before-procedure";
+import { AfterProcedureForm } from "./steps/after-procedure";
 
 export const MultiStepForm = () => {
   const step = useNewTattooFormStore((state) => state.step);

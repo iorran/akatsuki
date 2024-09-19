@@ -1,12 +1,12 @@
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '../../components/ui/form';
-import { useNewTattooFormStore } from "./store";
-import { Button } from '../../components/ui/button';
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
+import { useNewTattooFormStore } from "../store";
+import { Button } from '@/components/ui/button';
 import { useForm, useWatch } from 'react-hook-form';
-import { healthSchema } from './schema';
+import { healthSchema } from '../schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
-import { Textarea } from "../../components/ui/textarea";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Textarea } from "@/components/ui/textarea";
 import { Fragment } from 'react';
 
 type HealthFormFields = 'healthRQ1' | 'healthQ1' | 'healthRQ2' | 'healthQ2' | 'healthRQ3' | 'healthQ3' | 'healthRQ4' | 'healthQ4';

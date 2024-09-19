@@ -1,17 +1,17 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
-import { Button } from '../../components/ui/button';
-import { Input } from '../../components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { personalInformationSchema } from './schema';
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '../../components/ui/form';
-import { useNewTattooFormStore } from './store';
-import { cn } from '../../lib/utils';
+import { personalInformationSchema } from '../schema';
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
+import { useNewTattooFormStore } from '../store';
+import { cn } from '@/lib/utils';
 import { format } from "date-fns"
-import { Calendar } from "../../components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "../../components/ui/popover"
+import { Calendar } from "@/components/ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Calendar as CalendarIcon } from "lucide-react"
 
 export function PersonalInformationForm() {

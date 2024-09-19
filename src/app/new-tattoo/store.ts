@@ -3,7 +3,7 @@ import { devtools, persist } from 'zustand/middleware'
 
 interface FormState {
     open: boolean;
-    openDialog: () => void;
+    setOpen: (open: boolean) => void;
     step: number;
     setStep: (step: number) => void;
     data: Record<string, any>;
@@ -16,7 +16,7 @@ export const useNewTattooFormStore = create<FormState>()(
         persist(
             (set) => ({
                 open: false,
-                openDialog: () => set({ open: true }),
+                setOpen: (open) => set({ open }),
                 step: 0,
                 setStep: (step) => set({ step }),
                 data: {},
