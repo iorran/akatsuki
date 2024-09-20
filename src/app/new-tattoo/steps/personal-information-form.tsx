@@ -60,7 +60,7 @@ export function PersonalInformationForm() {
                         <FormItem className="w-full">
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input placeholder="" {...field} />
+                                <Input type="email" placeholder="" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -73,7 +73,7 @@ export function PersonalInformationForm() {
                         <FormItem className="w-full">
                             <FormLabel>Telemóvel</FormLabel>
                             <FormControl>
-                                <Input placeholder="" {...field} />
+                                <Input type="tel" placeholder="" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

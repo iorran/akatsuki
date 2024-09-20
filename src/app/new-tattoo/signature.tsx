@@ -51,14 +51,14 @@ export const SignatureComponent = ({ title, description, signatureData, saveSign
             <AlertDialogContent>
                 <AlertDialogHeader>
                     <AlertDialogTitle>{title}</AlertDialogTitle>
-                    <AlertDialogDescription className="text-sm text-muted-foreground h-">
+                    <AlertDialogDescription className="text-sm text-muted-foreground">
                         {description}
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <SignaturePad
                     ref={sigCanvasRef}
                     canvasProps={{
-                        className: "border-dashed border-[1px] border-destructive w-full h-80 max-sm:h-60"
+                        className: "border-dashed border-[1px] border-destructive w-full h-80 max-sm:h-44 max-h-80 max-sm:max-h-44"
                     }}
                 />
                 <AlertDialogFooter>
