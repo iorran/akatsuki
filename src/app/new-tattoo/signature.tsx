@@ -41,7 +41,7 @@ export const SignatureComponent = ({ title, description, signatureData, saveSign
                     <img
                         src={signatureData}
                         alt={`${title} signature`}
-                        className='block p-10'
+                        className='block p-6'
                     />
                 </div>
             ) : null}
@@ -51,19 +51,19 @@ export const SignatureComponent = ({ title, description, signatureData, saveSign
             <AlertDialogContent>
                 <AlertDialogHeader>
                     <AlertDialogTitle>{title}</AlertDialogTitle>
-                    <AlertDialogDescription className="text-sm text-muted-foreground">
+                    <AlertDialogDescription className="text-sm text-muted-foreground h-">
                         {description}
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <SignaturePad
                     ref={sigCanvasRef}
                     canvasProps={{
-                        className: "my-0 mx-auto border-dashed border-[1px] border-destructive w-full"
+                        className: "border-dashed border-[1px] border-destructive w-full h-80 max-sm:h-60"
                     }}
                 />
                 <AlertDialogFooter>
                     <AlertDialogCancel>Fechar</AlertDialogCancel>
-                    <Button type="button" variant="outline" onClick={clearSignature}>Apagar</Button>
+                    <Button type="button" variant="outline" className='max-sm:mt-2' onClick={clearSignature}>Apagar</Button>
                     <AlertDialogAction onClick={saveSignatureHandler}>Salvar</AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
