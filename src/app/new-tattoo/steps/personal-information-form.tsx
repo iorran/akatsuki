@@ -23,7 +23,7 @@ export function PersonalInformationForm() {
         defaultValues: {
             name: '',
             email: '',
-            phone: '',
+            phone: '+351',
             birthday: undefined,
             document: '',
             whereFoundUs: '',
@@ -108,7 +108,7 @@ export function PersonalInformationForm() {
                                                 !field.value && "text-muted-foreground"
                                             )}
                                         >
-                                            {field.value ? format(field.value, "PPP") : null}
+                                            {field.value ? format(field.value, "PPP") : "Selecione a data"}
                                             <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                                         </Button>
                                     </FormControl>

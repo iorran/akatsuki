@@ -7,8 +7,10 @@ export const personalInformationSchema = z.object({
   email: z.string().trim().email({
     message: "Email inválido",
   }),
-  phone: z.string().trim().min(1, {
+  phone: z.string().trim().min(5, {
     message: "Telemóvel obrigatório",
+  }).regex(/^\+?[1-9]\d{1,14}$/, {
+    message: "Formato inválido",
   }),
   document: z.string().trim().min(1, {
     message: "Documento obrigatório",
@@ -72,6 +74,14 @@ export const beforeProcedureSchema = z.object({
   beforeProcedureRQ4: z.enum(['Sim', 'Nao']).refine(val => val === 'Sim', {
     message: "Você deve selecionar 'Sim' para continuar.",
   }),
+  price: z.string().trim().min(1, {
+    message: "Parte do corpo obrigatório",
+  }).refine((val) => !Number.isNaN(parseInt(val, 10)), {
+    message: "Expected number, received a string"
+  }),
+  bodyPart: z.string().trim().min(1, {
+    message: "Parte do corpo obrigatório",
+  }),
 });
 
 export const afterProcedureObject = z.object({
@@ -97,7 +107,17 @@ export const afterProcedureSchema = afterProcedureObject.superRefine((data, ctx)
   }
 });
 
+export const signatureSchema = z.object({
+  clientSignature: z.string().trim().min(1, {
+    message: "Assinatura do cliente obrigatória",
+  }),
+  artistSignature: z.string().trim().min(1, {
+    message: "Assinatura do artista obrigatória",
+  }),
+});
+
 export const unifiedSchema = personalInformationSchema
   .merge(healthSchemaObject)
   .merge(beforeProcedureSchema)
-  .merge(afterProcedureObject);
+  .merge(afterProcedureObject)
+  .merge(signatureSchema);

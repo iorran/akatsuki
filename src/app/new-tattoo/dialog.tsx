@@ -9,7 +9,7 @@ import {
 import { useNewTattooFormStore } from "./store";
 import { Button } from "@/components/ui/button";
 import { MultiStepForm } from "./multi-step-form";
-import { DialogTitle } from "@radix-ui/react-dialog";
+import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 
 export const NewTattooDialog = () => {
     const open = useNewTattooFormStore(state => state.open);
@@ -27,6 +27,9 @@ export const NewTattooDialog = () => {
                     <DialogTitle>
                         Termos e condições
                     </DialogTitle>
+                    <DialogDescription className="text-sm text-muted-foreground">
+                        Obrigado por ser nosso cliente
+                    </DialogDescription>
                 </DialogHeader>
                 <MultiStepForm />
             </DialogContent>

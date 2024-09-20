@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Fragment } from 'react';
+import { Input } from '@/components/ui/input';
 
 type BeforeProcedureFormFields = 'beforeProcedureRQ1' | 'beforeProcedureRQ2' | 'beforeProcedureRQ3' | 'beforeProcedureRQ4';
 const QUESTIONS: { name: BeforeProcedureFormFields, label: string }[] = [
@@ -36,6 +37,8 @@ export const BeforeProcedureForm = () => {
     const form = useForm<z.output<typeof beforeProcedureSchema>>({
         resolver: zodResolver(beforeProcedureSchema),
         defaultValues: {
+            price: '',
+            bodyPart: '',
             ...(data ?? {}),
         },
     });
@@ -83,6 +86,33 @@ export const BeforeProcedureForm = () => {
                         />
                     </Fragment>
                 ))}
+
+                <FormField
+                    control={form.control}
+                    name="bodyPart"
+                    render={({ field }) => (
+                        <FormItem className="w-full">
+                            <FormLabel>Parte do corpo</FormLabel>
+                            <FormControl>
+                                <Input placeholder="" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="price"
+                    render={({ field }) => (
+                        <FormItem className="w-full">
+                            <FormLabel>Preço</FormLabel>
+                            <FormControl>
+                                <Input type='number' {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
                 <div className="flex gap-4 w-1/2">
                     <Button type="button" variant="outline" onClick={back} className="w-1/2">Anterior</Button>
                     <Button type="submit" className="w-1/2">Próximo</Button>

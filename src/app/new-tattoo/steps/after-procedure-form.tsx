@@ -48,15 +48,20 @@ export const AfterProcedureForm = () => {
         setStep(2);
     };
 
-    const onSubmit = async (formData: z.output<typeof afterProcedureSchema>) => {
-        setData({ ...data, ...formData })
-        const { error } = await submitForm({ ...data, ...formData });
-        if (error) {
-            toast.error(error);
-            return;
-        }
-        reset();
-        toast.success("Novo registro criado.");
+    // const onSubmit = async (formData: z.output<typeof afterProcedureSchema>) => {
+    //     setData({ ...data, ...formData })
+    //     const { error } = await submitForm({ ...data, ...formData });
+    //     if (error) {
+    //         toast.error(error);
+    //         return;
+    //     }
+    //     reset();
+    //     toast.success("Novo registro criado.");
+    // };
+
+    const onSubmit = (formData: z.output<typeof afterProcedureSchema>) => {
+        setData(formData);
+        setStep(4);
     };
 
     return (
@@ -90,7 +95,7 @@ export const AfterProcedureForm = () => {
                 ))}
                 <div className="flex gap-4 w-1/2">
                     <Button type="button" variant="outline" onClick={back} className="w-1/2">Anterior</Button>
-                    <Button type="submit" className="w-1/2">Salvar</Button>
+                    <Button type="submit" className="w-1/2">Próximo</Button>
                 </div>
             </form>
         </Form>
