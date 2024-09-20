@@ -1,7 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
 import { LoadingSkeleton, TattooAlerts } from "./tattoo-alerts/tattoo-alerts";
 import { NewTattooDialog } from "./new-tattoo/dialog";
-import { endOfToday, startOfToday, subDays, subMonths, subWeeks } from "date-fns";
 import { Suspense } from "react";
 
 export default function Home() {

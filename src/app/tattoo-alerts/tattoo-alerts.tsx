@@ -1,7 +1,7 @@
 import { createClient } from "../../lib/supabase/server";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { endOfToday, startOfToday, subDays, subMonths, subWeeks } from "date-fns";
+import { format, subDays, subMonths, subWeeks, startOfDay, endOfDay } from "date-fns";
 import { WhatsAppButton } from './whatsapp-button';
 
 type Period = 'today' | 'days' | 'months' | 'weeks';
@@ -10,22 +10,28 @@ interface TattooAlertsProps {
     period: Period;
 }
 
-const PARAMS: Record<Period, { startDate: string, endDate: string }> = {
+const BACKEND_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
+const FRONTEND_FORMAT = "dd/MM/yyyy";
+
+const PARAMS: Record<Period, { startDate: string, endDate: string, flag?: string }> = {
     today: {
-        startDate: startOfToday().toISOString(),
-        endDate: endOfToday().toISOString(),
+        startDate: format(startOfDay(new Date()), BACKEND_FORMAT),
+        endDate: format(endOfDay(new Date()), BACKEND_FORMAT),
     },
     days: {
-        startDate: subDays(new Date(), 2).toISOString(),
-        endDate: new Date().toISOString(),
+        startDate: format(startOfDay(subDays(new Date(), 2)), BACKEND_FORMAT),
+        endDate: format(endOfDay(subDays(new Date(), 2)), BACKEND_FORMAT),
+        flag: 'message2Days'
     },
     weeks: {
-        startDate: subWeeks(new Date(), 2).toISOString(),
-        endDate: new Date().toISOString(),
+        startDate: format(startOfDay(subWeeks(new Date(), 2)), BACKEND_FORMAT),
+        endDate: format(endOfDay(subWeeks(new Date(), 2)), BACKEND_FORMAT),
+        flag: 'message2Weeks'
     },
     months: {
-        startDate: subMonths(new Date(), 2).toISOString(),
-        endDate: new Date().toISOString(),
+        startDate: format(startOfDay(subMonths(new Date(), 2)), BACKEND_FORMAT),
+        endDate: format(endOfDay(subMonths(new Date(), 2)), BACKEND_FORMAT),
+        flag: 'message2Months'
     },
 };
 
@@ -33,31 +39,28 @@ export const TattooAlerts = async ({ period }: TattooAlertsProps) => {
     const supabase = createClient();
 
     try {
-        const { data: tattoos, error } = await supabase
+        let query = supabase
             .from("tattoo")
             .select('*')
-            .gte('createdAt', PARAMS[period].startDate)
-            .lte('createdAt', PARAMS[period].endDate);
+            .gt('createdAt', PARAMS[period].startDate)
+            .lt('createdAt', PARAMS[period].endDate);
 
-        if (error) {
-            return (
-                <div className="flex flex-1 justify-center items-center">
-                    <Alert>
-                        <AlertTitle>Error</AlertTitle>
-                        <AlertDescription>
-                            Failed to fetch tattoo data: {error.message}
-                        </AlertDescription>
-                    </Alert>
-                </div>
-            );
+        if (PARAMS[period].flag) {
+            query = query.is(PARAMS[period].flag, null);
         }
 
-        if (!tattoos || tattoos.length === 0) {
+        const { data: tattoos, error } = await query;
+
+        if (error || !tattoos || tattoos.length === 0) {
+            const message = error
+                ? `Failed to fetch tattoo data: ${error.message}`
+                : "Você já fez seu dever de casa :)";
+
             return (
                 <div className="flex flex-1 justify-center items-center">
                     <Alert>
-                        <AlertTitle>Nada por aqui!</AlertTitle>
-                        <AlertDescription>Você já fez seu dever de casa :)</AlertDescription>
+                        <AlertTitle>{error ? "Error" : "Nada por aqui!"}</AlertTitle>
+                        <AlertDescription>{message}</AlertDescription>
                     </Alert>
                 </div>
             );
@@ -68,14 +71,17 @@ export const TattooAlerts = async ({ period }: TattooAlertsProps) => {
                 {tattoos.map((tattoo) => (
                     <Card key={tattoo.id}>
                         <CardHeader className="flex flex-row items-center justify-between">
-                            <div>
+                            <div className="space-y-2">
                                 <CardTitle>{tattoo.name}</CardTitle>
-                                <CardDescription className="text-xs text-muted-foreground">
+                                <CardDescription>
                                     {tattoo.email}
                                 </CardDescription>
                             </div>
                             <WhatsAppButton phone={tattoo.phone} />
                         </CardHeader>
+                        <CardContent className="text-xs">
+                            Tatuado em {format(tattoo.createdAt, FRONTEND_FORMAT)}
+                        </CardContent>
                     </Card>
                 ))}
             </div>
@@ -93,6 +99,7 @@ export const TattooAlerts = async ({ period }: TattooAlertsProps) => {
         );
     }
 };
+
 
 export const LoadingSkeleton = () => {
     return (
