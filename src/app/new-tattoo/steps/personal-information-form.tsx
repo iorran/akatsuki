@@ -98,7 +98,7 @@ export function PersonalInformationForm() {
                     render={({ field }) => (
                         <FormItem className="flex flex-col w-full">
                             <FormLabel>Data de Nascimento</FormLabel>
-                            <Popover>
+                            <Popover modal={true}>
                                 <PopoverTrigger asChild>
                                     <FormControl>
                                         <Button
