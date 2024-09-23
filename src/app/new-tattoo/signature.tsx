@@ -41,7 +41,7 @@ export const SignatureComponent = ({ title, description, signatureData, saveSign
                     <img
                         src={signatureData}
                         alt={`${title} signature`}
-                        className='block p-6 max-sm:max-h-24'
+                        className='block p-6 max-sm:max-h-24 max-h-44'
                     />
                 </div>
             ) : null}

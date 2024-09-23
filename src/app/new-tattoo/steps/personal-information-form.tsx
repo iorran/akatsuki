@@ -45,7 +45,7 @@ export function PersonalInformationForm() {
                     name="name"
                     render={({ field }) => (
                         <FormItem className="w-full">
-                            <FormLabel>Name</FormLabel>
+                            <FormLabel>Nome</FormLabel>
                             <FormControl>
                                 <Input placeholder="" {...field} />
                             </FormControl>

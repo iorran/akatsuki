@@ -1,6 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
 import { LoadingSkeleton, TattooAlerts } from "./tattoo-alerts/tattoo-alerts";
-import { NewTattooDialog } from "./new-tattoo/dialog";
 import { Suspense } from "react";
 
 export default function Home() {
@@ -13,7 +12,6 @@ export default function Home() {
           <TabsTrigger value="weeks">2 Semanas</TabsTrigger>
           <TabsTrigger value="months">2 Meses</TabsTrigger>
         </TabsList>
-        <NewTattooDialog />
       </div>
       <TabsContent value="today">
         <Suspense fallback={<LoadingSkeleton />}>

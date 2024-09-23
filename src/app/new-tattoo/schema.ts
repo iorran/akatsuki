@@ -74,6 +74,9 @@ export const beforeProcedureSchema = z.object({
   beforeProcedureRQ4: z.enum(['Sim', 'Nao']).refine(val => val === 'Sim', {
     message: "Você deve selecionar 'Sim' para continuar.",
   }),
+  art: z.string().trim().min(1, {
+    message: "Desenho obrigatório",
+  }),
   price: z.string().trim().min(1, {
     message: "Parte do corpo obrigatório",
   }).refine((val) => !Number.isNaN(parseInt(val, 10)), {

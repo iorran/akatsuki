@@ -79,9 +79,9 @@ export const TattooAlerts = async ({ period }: TattooAlertsProps) => {
                             </div>
                             <WhatsAppButton phone={tattoo.phone} />
                         </CardHeader>
-                        <CardContent className="text-xs">
+                        {/* <CardContent className="text-xs">
                             Tatuado em {format(tattoo.createdAt, FRONTEND_FORMAT)}
-                        </CardContent>
+                        </CardContent> */}
                     </Card>
                 ))}
             </div>

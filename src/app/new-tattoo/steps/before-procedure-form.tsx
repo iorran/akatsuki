@@ -1,4 +1,4 @@
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from '@/components/ui/form';
 import { useNewTattooFormStore } from "../store";
 import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
@@ -86,7 +86,20 @@ export const BeforeProcedureForm = () => {
                         />
                     </Fragment>
                 ))}
-
+                <FormField
+                    control={form.control}
+                    name="art"
+                    render={({ field }) => (
+                        <FormItem className="w-full">
+                            <FormLabel>Desenho</FormLabel>
+                            <FormControl>
+                                <Input {...field} />
+                            </FormControl>
+                            <FormDescription>Informe o que irá tatuar!</FormDescription>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
                 <FormField
                     control={form.control}
                     name="bodyPart"

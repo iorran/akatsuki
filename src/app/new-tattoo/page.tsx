@@ -7,7 +7,7 @@ import { BeforeProcedureForm } from "./steps/before-procedure-form";
 import { AfterProcedureForm } from "./steps/after-procedure-form";
 import { SignatureForm } from "./steps/signature-form";
 
-export const MultiStepForm = () => {
+const MultiStepForm = () => {
   const step = useNewTattooFormStore((state) => state.step);
   const formsMap = [
     <PersonalInformationForm />,
@@ -23,3 +23,5 @@ export const MultiStepForm = () => {
     </div>
   );
 };
+
+export default MultiStepForm;
