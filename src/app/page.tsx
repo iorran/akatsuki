@@ -11,6 +11,7 @@ export default function Home() {
           <TabsTrigger value="days">2 Dias</TabsTrigger>
           <TabsTrigger value="weeks">2 Semanas</TabsTrigger>
           <TabsTrigger value="months">2 Meses</TabsTrigger>
+          <TabsTrigger value="pending">Pendentes</TabsTrigger>
         </TabsList>
       </div>
       <TabsContent value="today">
@@ -31,6 +32,11 @@ export default function Home() {
       <TabsContent value="months">
         <Suspense fallback={<LoadingSkeleton />}>
           <TattooAlerts period="months" />
+        </Suspense>
+      </TabsContent>
+      <TabsContent value="pending">
+        <Suspense fallback={<LoadingSkeleton />}>
+          Em construção
         </Suspense>
       </TabsContent>
     </Tabs>

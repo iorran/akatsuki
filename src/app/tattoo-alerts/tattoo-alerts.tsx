@@ -1,8 +1,11 @@
-import { createClient } from "../../lib/supabase/server";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { createClient } from "@/lib/supabase/server";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { format, subDays, subMonths, subWeeks, startOfDay, endOfDay } from "date-fns";
 import { WhatsAppButton } from './whatsapp-button';
+import { Actions } from "./actions";
+import { Done } from "./done";
+import { AddNote } from "./add-note";
 
 type Period = 'today' | 'days' | 'months' | 'weeks';
 
@@ -77,11 +80,13 @@ export const TattooAlerts = async ({ period }: TattooAlertsProps) => {
                                     {tattoo.email}
                                 </CardDescription>
                             </div>
-                            <WhatsAppButton phone={tattoo.phone} />
+                            <div className="flex flex-row items-center gap-4"> 
+                                <Done phone={tattoo.phone} />
+                                <AddNote phone={tattoo.phone} />
+                                <WhatsAppButton phone={tattoo.phone} />
+                                <Actions tattoo={tattoo} />
+                            </div>
                         </CardHeader>
-                        {/* <CardContent className="text-xs">
-                            Tatuado em {format(tattoo.createdAt, FRONTEND_FORMAT)}
-                        </CardContent> */}
                     </Card>
                 ))}
             </div>
