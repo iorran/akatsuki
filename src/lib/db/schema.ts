@@ -1,4 +1,4 @@
-import { boolean, integer, pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core';
+import { boolean, date, pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core';
 
 export const tattooTable = pgTable('tattoo', {
   id: serial('id').primaryKey(),
@@ -6,7 +6,7 @@ export const tattooTable = pgTable('tattoo', {
   email: text('email').notNull(),
   phone: text('phone').notNull(),
   document: text('document').notNull(),
-  birthday: text('birthday').notNull(),
+  birthday: date('birthday').notNull(),
   whereFoundUs: text('whereFoundUs'),
 
   healthRQ1: text('healthRQ1').notNull(),
@@ -32,21 +32,15 @@ export const tattooTable = pgTable('tattoo', {
 
   artistSignature: text('artistSignature').notNull(),
   clientSignature: text('clientSignature').notNull(),
-  
-  createdAt: timestamp('createdAt').notNull().defaultNow(),
-});
 
-export const noteTable = pgTable('note', {
-  id: serial('id').primaryKey(),
-  content: text('content').notNull(),
-  tattooId: integer('tattooId')
-    .notNull()
-    .references(() => tattooTable.id, { onDelete: 'cascade' }),
+  message2Days: text('message2Days'),
+  message2Weeks: text('message2Weeks'),
+  message2Months: text('message2Months'),
+
+  notes: text('notes'),
+  
   createdAt: timestamp('createdAt').notNull().defaultNow(),
 });
 
 export type InsertTattoo = typeof tattooTable.$inferInsert;
 export type SelectTattoo = typeof tattooTable.$inferSelect;
-
-export type InsertNote = typeof noteTable.$inferInsert;
-export type SelectNote = typeof noteTable.$inferSelect;

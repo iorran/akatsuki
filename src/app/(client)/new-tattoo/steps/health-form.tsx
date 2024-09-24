@@ -10,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Fragment } from 'react';
 
 type HealthFormFields = 'healthRQ1' | 'healthQ1' | 'healthRQ2' | 'healthQ2' | 'healthRQ3' | 'healthQ3' | 'healthRQ4' | 'healthQ4';
-const QUESTIONS: { name: HealthFormFields, label: string, textAreaName: HealthFormFields }[] = [
+export const QUESTIONS: { name: HealthFormFields, label: string, textAreaName: HealthFormFields }[] = [
     {
         name: 'healthRQ1',
         label: 'Indique se há diagnóstico positivo para Hepatite B e C, HIV/AIDS, sífilis, tuberculose, herpes, eczema, psoríase, acne, rosácea, diabetes, distúrbios de coagulação sanguínea, problemas cardíacos, doenças autoimunes, câncer, epilepsia, gravidez, queloide, anemia, hemofilia ou doença autoimune, vitiligo.',

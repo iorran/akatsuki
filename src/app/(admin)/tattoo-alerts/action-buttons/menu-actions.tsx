@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { EllipsisVertical } from 'lucide-react';
 
-export const Actions = ({ tattoo }: { tattoo: any }) => {
+export const MenuActions = ({ tattoo }: { tattoo: any }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

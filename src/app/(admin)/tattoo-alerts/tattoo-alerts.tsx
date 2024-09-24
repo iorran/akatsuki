@@ -1,11 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { format, subDays, subMonths, subWeeks, startOfDay, endOfDay } from "date-fns";
-import { WhatsAppButton } from './whatsapp-button';
-import { Actions } from "./actions";
-import { Done } from "./done";
-import { AddNote } from "./add-note";
+import { TattooCard } from "./tattoo-card";
 
 type Period = 'today' | 'days' | 'months' | 'weeks';
 
@@ -14,7 +10,6 @@ interface TattooAlertsProps {
 }
 
 const BACKEND_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
-const FRONTEND_FORMAT = "dd/MM/yyyy";
 
 const PARAMS: Record<Period, { startDate: string, endDate: string, flag?: string }> = {
     today: {
@@ -72,22 +67,7 @@ export const TattooAlerts = async ({ period }: TattooAlertsProps) => {
         return (
             <div className="space-y-2">
                 {tattoos.map((tattoo) => (
-                    <Card key={tattoo.id}>
-                        <CardHeader className="flex flex-row items-center justify-between">
-                            <div className="space-y-2">
-                                <CardTitle>{tattoo.name}</CardTitle>
-                                <CardDescription>
-                                    {tattoo.email}
-                                </CardDescription>
-                            </div>
-                            <div className="flex flex-row items-center gap-4"> 
-                                <Done phone={tattoo.phone} />
-                                <AddNote phone={tattoo.phone} />
-                                <WhatsAppButton phone={tattoo.phone} />
-                                <Actions tattoo={tattoo} />
-                            </div>
-                        </CardHeader>
-                    </Card>
+                    <TattooCard key={tattoo.id} tattoo={tattoo} />
                 ))}
             </div>
         );

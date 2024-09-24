@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { submitForm } from '../actions';
 import { toast } from 'sonner';
 import { useFormStatus } from 'react-dom';
+import { useState } from 'react';
 
 export const SignatureForm = () => {
     const setData = useNewTattooFormStore((state) => state.setData);
@@ -16,6 +17,7 @@ export const SignatureForm = () => {
     const reset = useNewTattooFormStore((state) => state.reset);
     const data = useNewTattooFormStore((state) => state.data);
     const { pending } = useFormStatus()  
+    const [isSubmitting, setIsSubmitting] = useState(false); 
 
     const form = useForm<z.output<typeof signatureSchema>>({
         resolver: zodResolver(signatureSchema),
@@ -41,12 +43,14 @@ export const SignatureForm = () => {
 
     const onSubmit = async (formData: z.output<typeof signatureSchema>) => {
         setData({ ...data, ...formData })
+        setIsSubmitting(true)
         const { error } = await submitForm({ ...data, ...formData });
+        setIsSubmitting(false)
+        reset();
         if (error) {
             toast.error(error);
             return;
         }
-        reset();
         toast.success("Novo registro criado.");
     };
 

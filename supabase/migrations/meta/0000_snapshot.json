@@ -1,58 +1,9 @@
 {
-  "id": "54ec1b18-adc5-41fc-8ce8-b5a73a18ccfe",
+  "id": "23add9ff-df14-4ce2-bbfd-0cfab6775136",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.note": {
-      "name": "note",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "content": {
-          "name": "content",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "tattooId": {
-          "name": "tattooId",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "createdAt": {
-          "name": "createdAt",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "note_tattooId_tattoo_id_fk": {
-          "name": "note_tattooId_tattoo_id_fk",
-          "tableFrom": "note",
-          "tableTo": "tattoo",
-          "columnsFrom": [
-            "tattooId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
     "public.tattoo": {
       "name": "tattoo",
       "schema": "",
@@ -89,7 +40,7 @@
         },
         "birthday": {
           "name": "birthday",
-          "type": "text",
+          "type": "date",
           "primaryKey": false,
           "notNull": true
         },
@@ -218,6 +169,30 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true
+        },
+        "message2Days": {
+          "name": "message2Days",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "message2Weeks": {
+          "name": "message2Weeks",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "message2Months": {
+          "name": "message2Months",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "notes": {
+          "name": "notes",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         },
         "createdAt": {
           "name": "createdAt",
