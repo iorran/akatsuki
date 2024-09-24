@@ -1,0 +1,244 @@
+{
+  "id": "54ec1b18-adc5-41fc-8ce8-b5a73a18ccfe",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.note": {
+      "name": "note",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "content": {
+          "name": "content",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tattooId": {
+          "name": "tattooId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "note_tattooId_tattoo_id_fk": {
+          "name": "note_tattooId_tattoo_id_fk",
+          "tableFrom": "note",
+          "tableTo": "tattoo",
+          "columnsFrom": [
+            "tattooId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.tattoo": {
+      "name": "tattoo",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "phone": {
+          "name": "phone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "document": {
+          "name": "document",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "birthday": {
+          "name": "birthday",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "whereFoundUs": {
+          "name": "whereFoundUs",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "healthRQ1": {
+          "name": "healthRQ1",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "healthQ1": {
+          "name": "healthQ1",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "healthRQ2": {
+          "name": "healthRQ2",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "healthQ2": {
+          "name": "healthQ2",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "healthRQ3": {
+          "name": "healthRQ3",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "healthQ3": {
+          "name": "healthQ3",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "healthRQ4": {
+          "name": "healthRQ4",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "healthQ4": {
+          "name": "healthQ4",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "beforeProcedureRQ1": {
+          "name": "beforeProcedureRQ1",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "beforeProcedureRQ2": {
+          "name": "beforeProcedureRQ2",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "beforeProcedureRQ3": {
+          "name": "beforeProcedureRQ3",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "beforeProcedureRQ4": {
+          "name": "beforeProcedureRQ4",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "art": {
+          "name": "art",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "price": {
+          "name": "price",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bodyPart": {
+          "name": "bodyPart",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "afterProcedureRQ1": {
+          "name": "afterProcedureRQ1",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "afterProcedureRQ2": {
+          "name": "afterProcedureRQ2",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "afterProcedureRQ3": {
+          "name": "afterProcedureRQ3",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "artistSignature": {
+          "name": "artistSignature",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "clientSignature": {
+          "name": "clientSignature",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
