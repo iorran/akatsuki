@@ -1,4 +1,4 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs"
 import { LoadingSkeleton, TattooAlerts } from "./tattoo-alerts/tattoo-alerts";
 import { Suspense } from "react";
 

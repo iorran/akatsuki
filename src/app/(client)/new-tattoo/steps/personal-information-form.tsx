@@ -115,6 +115,9 @@ export function PersonalInformationForm() {
                                 </PopoverTrigger>
                                 <PopoverContent className="w-auto p-0" align="start">
                                     <Calendar
+                                        captionLayout='dropdown'
+                                        fromYear={1920}
+                                        toYear={2025}
                                         mode="single"
                                         selected={field.value}
                                         onSelect={field.onChange}

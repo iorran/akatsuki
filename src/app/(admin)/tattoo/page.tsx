@@ -1,5 +1,3 @@
-import { Suspense } from "react";
-
 import {
   Accordion,
   AccordionContent,
