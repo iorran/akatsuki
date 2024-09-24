@@ -43,4 +43,5 @@ export const tattooTable = pgTable('tattoo', {
 });
 
 export type InsertTattoo = typeof tattooTable.$inferInsert;
+export type UpdateTattoo = Partial<InsertTattoo>;
 export type SelectTattoo = typeof tattooTable.$inferSelect;

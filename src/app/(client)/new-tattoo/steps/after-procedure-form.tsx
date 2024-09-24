@@ -7,26 +7,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Fragment } from 'react';
 import { Checkbox } from '@/components/ui/checkbox';
-
-type AfterProcedureFormFields = 'afterProcedureRQ1' | 'afterProcedureRQ2' | 'afterProcedureRQ3';
-const QUESTIONS: { name: AfterProcedureFormFields, label: string }[] = [
-    {
-        name: 'afterProcedureRQ1',
-        label: 'Comprometo-me a seguir as instruções repassadas pelo profissional, a fim de que a cicatrização seja a melhor possível, estando ciente de que cada pessoa possui um tempo específico e próprio de reação.',
-    },
-    {
-        name: 'afterProcedureRQ2',
-        label: 'Estou ciente de que qualquer problema com a minha tatuagem deve ser tratado diretamente com o tatuador.',
-    },
-    {
-        name: 'afterProcedureRQ3',
-        label: 'Autorizo a veiculação do trabalho executado através meio de comunicação isentando-o de qualquer bônus e/ou ônus advindo da exposição da imagem e qualquer processo decorrente.',
-    },
-];
+import { AFTER_PROCEDURE_QUESTIONS } from './questions';
 
 export const AfterProcedureForm = () => {
     const data = useNewTattooFormStore((state) => state.data);
-    const reset = useNewTattooFormStore((state) => state.reset);
     const setData = useNewTattooFormStore((state) => state.setData);
     const setStep = useNewTattooFormStore((state) => state.setStep);
 
@@ -65,7 +49,7 @@ export const AfterProcedureForm = () => {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col w-full gap-4 items-end">
-                {QUESTIONS.map((question) => (
+                {AFTER_PROCEDURE_QUESTIONS.map((question) => (
                     <Fragment key={question.name}>
                         <FormField
                             control={form.control}

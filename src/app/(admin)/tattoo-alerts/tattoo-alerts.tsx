@@ -3,7 +3,7 @@ import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { format, subDays, subMonths, subWeeks, startOfDay, endOfDay } from "date-fns";
 import { TattooCard } from "./tattoo-card";
 
-type Period = 'today' | 'days' | 'months' | 'weeks';
+export type Period = 'today' | 'days' | 'months' | 'weeks';
 
 interface TattooAlertsProps {
     period: Period;
@@ -67,7 +67,7 @@ export const TattooAlerts = async ({ period }: TattooAlertsProps) => {
         return (
             <div className="space-y-2">
                 {tattoos.map((tattoo) => (
-                    <TattooCard key={tattoo.id} tattoo={tattoo} />
+                    <TattooCard key={tattoo.id} tattoo={tattoo} period={period} />
                 ))}
             </div>
         );

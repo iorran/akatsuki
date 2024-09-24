@@ -7,7 +7,7 @@ import { Done } from "./action-buttons/done"
 import { WhatsAppButton } from "./action-buttons/whatsapp-button"
 import Link from "next/link";
 
-export const TattooCard = ({ tattoo }: any) => {
+export const TattooCard = ({ tattoo, period }: any) => {
     return (
         <Card>
             <CardHeader className="flex flex-row items-center justify-between">
@@ -18,10 +18,10 @@ export const TattooCard = ({ tattoo }: any) => {
                     </CardDescription>
                 </Link>
                 <div className="flex flex-row items-center gap-4">
-                    <Done phone={tattoo.phone} />
-                    <AddNote id={tattoo.id} />
+                    {period !== 'today' ? <Done phone={tattoo.phone} /> : null}
+                    <AddNote tattoo={tattoo} />
                     <WhatsAppButton phone={tattoo.phone} />
-                    <MenuActions tattoo={tattoo} />
+                    {period === 'today' ? <MenuActions tattoo={tattoo} /> : null}
                 </div>
             </CardHeader>
         </Card>

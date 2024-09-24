@@ -8,26 +8,7 @@ import { z } from 'zod';
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Fragment } from 'react';
 import { Input } from '@/components/ui/input';
-
-type BeforeProcedureFormFields = 'beforeProcedureRQ1' | 'beforeProcedureRQ2' | 'beforeProcedureRQ3' | 'beforeProcedureRQ4';
-const QUESTIONS: { name: BeforeProcedureFormFields, label: string }[] = [
-    {
-        name: 'beforeProcedureRQ1',
-        label: 'Afirmo ter conferido todos os detalhes da tatuagem (posição, grafia, datas, desenho, etc). Estou ciente de que a tatuagem é um processo artístico.',
-    },
-    {
-        name: 'beforeProcedureRQ2',
-        label: 'Não fiz uso de nenhum anestésico e estou ciente que caso seja descoberto o uso durante o procedimento, o mesmo será interrompido sem devolução do valor pago.',
-    },
-    {
-        name: 'beforeProcedureRQ3',
-        label: 'Confirmo ter mais de 18 Anos.',
-    },
-    {
-        name: 'beforeProcedureRQ4',
-        label: 'Afirmo ter ciência de há câmeras no ambiente laboral e autorizo a gravação de minha imagem.',
-    }
-];
+import { BEFORE_PROCEDURE_QUESTIONS, labels } from './questions';
 
 export const BeforeProcedureForm = () => {
     const data = useNewTattooFormStore((state) => state.data);
@@ -56,7 +37,7 @@ export const BeforeProcedureForm = () => {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col w-full gap-4 items-end">
-                {QUESTIONS.map((question) => (
+                {BEFORE_PROCEDURE_QUESTIONS.map((question) => (
                     <Fragment key={question.name}>
                         <FormField
                             control={form.control}
@@ -91,7 +72,7 @@ export const BeforeProcedureForm = () => {
                     name="art"
                     render={({ field }) => (
                         <FormItem className="w-full">
-                            <FormLabel>Desenho</FormLabel>
+                            <FormLabel>{labels.art}</FormLabel>
                             <FormControl>
                                 <Input {...field} />
                             </FormControl>
@@ -105,7 +86,7 @@ export const BeforeProcedureForm = () => {
                     name="bodyPart"
                     render={({ field }) => (
                         <FormItem className="w-full">
-                            <FormLabel>Parte do corpo</FormLabel>
+                            <FormLabel>{labels.bodyPart}</FormLabel>
                             <FormControl>
                                 <Input placeholder="" {...field} />
                             </FormControl>
@@ -118,7 +99,7 @@ export const BeforeProcedureForm = () => {
                     name="price"
                     render={({ field }) => (
                         <FormItem className="w-full">
-                            <FormLabel>Preço</FormLabel>
+                            <FormLabel>{labels.price}</FormLabel>
                             <FormControl>
                                 <Input type='number' {...field} />
                             </FormControl>

@@ -8,16 +8,15 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Button } from '@/components/ui/button';
 import { submitForm } from '../actions';
 import { toast } from 'sonner';
-import { useFormStatus } from 'react-dom';
 import { useState } from 'react';
+import { labels } from './questions';
 
 export const SignatureForm = () => {
     const setData = useNewTattooFormStore((state) => state.setData);
     const setStep = useNewTattooFormStore((state) => state.setStep);
     const reset = useNewTattooFormStore((state) => state.reset);
     const data = useNewTattooFormStore((state) => state.data);
-    const { pending } = useFormStatus()  
-    const [isSubmitting, setIsSubmitting] = useState(false); 
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const form = useForm<z.output<typeof signatureSchema>>({
         resolver: zodResolver(signatureSchema),
@@ -64,7 +63,7 @@ export const SignatureForm = () => {
                         <div className='flex space-y-4 w-full'>
                             <FormItem className="flex flex-col w-full">
                                 <FormLabel>
-                                    Assinatura do cliente
+                                    {labels.clientSignature}
                                 </FormLabel>
                                 <FormMessage />
                                 <FormControl>
@@ -90,7 +89,7 @@ export const SignatureForm = () => {
                         <div className='flex space-y-4 w-full'>
                             <FormItem className="flex flex-col w-full">
                                 <FormLabel>
-                                    Assinatura do artista
+                                    {labels.artistSignature}
                                 </FormLabel>
                                 <FormMessage />
                                 <FormControl>
@@ -109,8 +108,8 @@ export const SignatureForm = () => {
                     )}
                 />
                 <div className="flex gap-4 w-1/2">
-                    <Button disabled={pending} type="button" variant="outline" onClick={back} className="w-1/2">Anterior</Button>
-                    <Button disabled={pending} type="submit" className="w-1/2">Salvar</Button>
+                    <Button disabled={isSubmitting} type="button" variant="outline" onClick={back} className="w-1/2">Anterior</Button>
+                    <Button disabled={isSubmitting} type="submit" className="w-1/2">Salvar</Button>
                 </div>
             </form>
         </Form>

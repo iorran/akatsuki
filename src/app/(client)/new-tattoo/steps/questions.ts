@@ -1,4 +1,7 @@
-export const labels: Partial<Record<string, string>> = {
+import { z } from "zod";
+import { afterProcedureSchema, beforeProcedureSchema, healthSchema, unifiedSchema } from "../schema";
+
+export const labels: Partial<Record<keyof z.output<typeof unifiedSchema>, string>> = {
     name: "Nome",
     email: "Email",
     phone: "Telemóvel",
@@ -22,3 +25,60 @@ export const labels: Partial<Record<string, string>> = {
     artistSignature: 'Assinatura do artista',
     clientSignature: 'Assinatura do cliente',
 };
+
+export const HEALTH_QUESTIONS: { name: keyof z.output<typeof healthSchema>, label: string, textAreaName: keyof z.output<typeof healthSchema> }[] = [
+    {
+        name: 'healthRQ1',
+        label: labels.healthQ1!,
+        textAreaName: 'healthQ1',
+    },
+    {
+        name: 'healthRQ2',
+        label: labels.healthQ2!,
+        textAreaName: 'healthQ2',
+    },
+    {
+        name: 'healthRQ3',
+        label: labels.healthQ3!,
+        textAreaName: 'healthQ3',
+    },
+    {
+        name: 'healthRQ4',
+        label: labels.healthQ4!,
+        textAreaName: 'healthQ4',
+    }
+];
+
+export const BEFORE_PROCEDURE_QUESTIONS: { name: keyof z.output<typeof beforeProcedureSchema>, label: string }[] = [
+    {
+        name: 'beforeProcedureRQ1',
+        label: labels.beforeProcedureRQ1!,
+    },
+    {
+        name: 'beforeProcedureRQ2',
+        label: labels.beforeProcedureRQ2!,
+    },
+    {
+        name: 'beforeProcedureRQ3',
+        label: labels.beforeProcedureRQ3!,
+    },
+    {
+        name: 'beforeProcedureRQ4',
+        label: labels.beforeProcedureRQ4!,
+    }
+];
+
+export const AFTER_PROCEDURE_QUESTIONS: { name: keyof z.output<typeof afterProcedureSchema>, label: string }[] = [
+    {
+        name: 'afterProcedureRQ1',
+        label: labels.afterProcedureRQ1!,
+    },
+    {
+        name: 'afterProcedureRQ2',
+        label: labels.afterProcedureRQ2!,
+    },
+    {
+        name: 'afterProcedureRQ3',
+        label: labels.afterProcedureRQ3!,
+    },
+];

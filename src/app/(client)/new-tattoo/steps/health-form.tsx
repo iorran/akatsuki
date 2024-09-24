@@ -8,30 +8,7 @@ import { z } from 'zod';
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { Fragment } from 'react';
-
-type HealthFormFields = 'healthRQ1' | 'healthQ1' | 'healthRQ2' | 'healthQ2' | 'healthRQ3' | 'healthQ3' | 'healthRQ4' | 'healthQ4';
-export const QUESTIONS: { name: HealthFormFields, label: string, textAreaName: HealthFormFields }[] = [
-    {
-        name: 'healthRQ1',
-        label: 'Indique se há diagnóstico positivo para Hepatite B e C, HIV/AIDS, sífilis, tuberculose, herpes, eczema, psoríase, acne, rosácea, diabetes, distúrbios de coagulação sanguínea, problemas cardíacos, doenças autoimunes, câncer, epilepsia, gravidez, queloide, anemia, hemofilia ou doença autoimune, vitiligo.',
-        textAreaName: 'healthQ1',
-    },
-    {
-        name: 'healthRQ2',
-        label: 'Você já teve alguma reação alérgica a pigmentos de tatuagem ou outras tintas?',
-        textAreaName: 'healthQ2',
-    },
-    {
-        name: 'healthRQ3',
-        label: 'Você está tomando algum medicamento que possa afetar a cicatrização?',
-        textAreaName: 'healthQ3',
-    },
-    {
-        name: 'healthRQ4',
-        label: 'Você está sob tratamento médico atual ou possui alguma condição de saúde que deva ser informada?',
-        textAreaName: 'healthQ4',
-    }
-];
+import { HEALTH_QUESTIONS } from './questions';
 
 export const HealthForm = () => {
     const data = useNewTattooFormStore((state) => state.data);
@@ -55,7 +32,7 @@ export const HealthForm = () => {
 
     const watchedFields = useWatch({
         control: form.control,
-        name: QUESTIONS.map((question) => question.name),
+        name: HEALTH_QUESTIONS.map((question) => question.name),
     });
 
     const back = () => {
@@ -71,7 +48,7 @@ export const HealthForm = () => {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col w-full gap-4 items-end">
-                {QUESTIONS.map((question, index) => (
+                {HEALTH_QUESTIONS.map((question, index) => (
                     <Fragment key={question.name}>
                         <FormField
                             control={form.control}

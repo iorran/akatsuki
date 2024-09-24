@@ -2,7 +2,7 @@ import React from 'react';
 import { getTattooById, Tattoo } from '@/lib/db/queries/select';
 import { DataSection } from './data-section';
 import { ImageSection } from './image-section';
-import { labels } from '../../../(client)/new-tattoo/steps/labels'; // Import the custom labels mapping
+import { labels } from '../../../(client)/new-tattoo/steps/questions'; // Import the custom labels mapping
 import { AccordionSection } from './accordion-section';
 
 interface TattooNoteProps {
@@ -106,7 +106,7 @@ export const TattooNote = async ({ params }: TattooNoteProps) => {
                     value="Insights"
                     content={
                         tattoo.notes ? (
-                            <div className="text-foreground">
+                            <div className="text-foreground whitespace-pre-line">
                                 {tattoo.notes}
                             </div>
                         ) : (

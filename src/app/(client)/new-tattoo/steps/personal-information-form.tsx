@@ -13,6 +13,7 @@ import { format } from "date-fns"
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Calendar as CalendarIcon } from "lucide-react"
+import { labels } from './questions';
 
 export function PersonalInformationForm() {
     const data = useNewTattooFormStore((state) => state.data);
@@ -45,7 +46,7 @@ export function PersonalInformationForm() {
                     name="name"
                     render={({ field }) => (
                         <FormItem className="w-full">
-                            <FormLabel>Nome</FormLabel>
+                            <FormLabel>{labels.name}</FormLabel>
                             <FormControl>
                                 <Input placeholder="" {...field} />
                             </FormControl>
@@ -58,7 +59,7 @@ export function PersonalInformationForm() {
                     name="email"
                     render={({ field }) => (
                         <FormItem className="w-full">
-                            <FormLabel>Email</FormLabel>
+                            <FormLabel>{labels.email}</FormLabel>
                             <FormControl>
                                 <Input type="email" placeholder="" {...field} />
                             </FormControl>
@@ -71,7 +72,7 @@ export function PersonalInformationForm() {
                     name="phone"
                     render={({ field }) => (
                         <FormItem className="w-full">
-                            <FormLabel>Telemóvel</FormLabel>
+                            <FormLabel>{labels.phone}</FormLabel>
                             <FormControl>
                                 <Input type="tel" placeholder="" {...field} />
                             </FormControl>
@@ -84,7 +85,7 @@ export function PersonalInformationForm() {
                     name="document"
                     render={({ field }) => (
                         <FormItem className="w-full">
-                            <FormLabel>Documento</FormLabel>
+                            <FormLabel>{labels.document}</FormLabel>
                             <FormControl>
                                 <Input placeholder="" {...field} />
                             </FormControl>
@@ -97,7 +98,7 @@ export function PersonalInformationForm() {
                     name="birthday"
                     render={({ field }) => (
                         <FormItem className="flex flex-col w-full">
-                            <FormLabel>Data de Nascimento</FormLabel>
+                            <FormLabel>{labels.birthday}</FormLabel>
                             <Popover modal={true}>
                                 <PopoverTrigger asChild>
                                     <FormControl>
@@ -136,7 +137,7 @@ export function PersonalInformationForm() {
                     name="whereFoundUs"
                     render={({ field }) => (
                         <FormItem className="w-full">
-                            <FormLabel>Onde nos encontrou?</FormLabel>
+                            <FormLabel>{labels.whereFoundUs}</FormLabel>
                             <FormControl>
                                 <Input placeholder="" {...field} />
                             </FormControl>
