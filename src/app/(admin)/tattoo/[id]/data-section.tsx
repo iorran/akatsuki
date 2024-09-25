@@ -18,31 +18,26 @@ type ValidFieldKeys<T> = {
 }[keyof T];
 
 // Utility functions
-const formatValue = (value: string | number | boolean | null | Date): string | number | boolean => {
-    if (value === null) {
-        return 'N/A';
-    }
-    if (typeof value === 'string') {
-        const parsedDate = parseISO(value);
-        if (isValid(parsedDate)) {
-            return format(parsedDate, 'dd/MM/yyyy');
+const formatValue = (value: any, field: any) => {
+    try {
+        if (value === null) {
+            return 'N/A'
         }
-        return value;
-    }
-    if (value instanceof Date) {
-        if (isValid(value)) {
-            return format(value, 'dd/MM/yyyy');
-        } else {
-            return 'Invalid Date';
+        
+        if (typeof value === 'boolean') {
+            return value ? 'Sim' : 'Não';
         }
+
+        if (field === 'birthday') {
+            const parsedDate = parseISO(value);
+            if (isValid(parsedDate)) {
+                return format(parsedDate, 'dd/MM/yyyy');
+            }
+        }
+    } catch {
+        return 'Unsupported Type';
     }
-    if (typeof value === 'number') {
-        return value;
-    }
-    if (typeof value === 'boolean') {
-        return value ? 'Sim' : 'Não';
-    }
-    return 'Unsupported Type';
+    return value;
 };
 
 export function DataSection<T, K extends ValidFieldKeys<T>>({
@@ -71,7 +66,7 @@ export function DataSection<T, K extends ValidFieldKeys<T>>({
                                 <div className="text-foreground">
                                     {renderValue
                                         ? renderValue(data[field])
-                                        : formatValue(data[field] as string | number | boolean | Date | null)}
+                                        : formatValue(data[field], field)}
                                 </div>
                             </React.Fragment>
                         )
