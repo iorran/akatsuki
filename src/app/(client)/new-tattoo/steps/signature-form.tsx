@@ -10,6 +10,7 @@ import { submitForm } from '../actions';
 import { toast } from 'sonner';
 import { useState } from 'react';
 import { labels } from './questions';
+import { TattooDetails } from '@/app/(admin)/tattoo/[id]/tattoo-details';
 
 export const SignatureForm = () => {
     const setData = useNewTattooFormStore((state) => state.setData);
@@ -55,7 +56,15 @@ export const SignatureForm = () => {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-2 items-end'>
+            <div className='flex flex-row gap-2 w-auto items-start'>
+                <div className="text-foreground font-semibold">Desenho:</div>
+                <div className="text-muted-foreground">{data?.art}</div>
+                <div className="text-foreground font-semibold">Preço:</div>
+                <div className="text-muted-foreground">{data?.price}</div>
+                <div className="text-foreground font-semibold">Onde irá tatuar:</div>
+                <div className="text-muted-foreground">{data?.bodyPart}</div>
+            </div>
+            <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-2 items-end mt-8'>
                 <FormField
                     control={form.control}
                     name="clientSignature"
