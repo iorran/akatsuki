@@ -110,7 +110,8 @@ export const afterProcedureSchema = afterProcedureObject.superRefine((data, ctx)
   }
 });
 
-export const signatureSchema = z.object({
+export const signatureObject = z.object({
+  review: z.boolean({ required_error: "Você deve aceitar para continuar." }),
   clientSignature: z.string().trim().min(1, {
     message: "Assinatura do cliente obrigatória",
   }),
@@ -119,8 +120,18 @@ export const signatureSchema = z.object({
   }),
 });
 
+export const signatureSchema = signatureObject.superRefine((data, ctx) => {
+  if (!data.review) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['review'],
+      message: "Você deve aceitar para continuar.",
+    });
+  }
+});
+
 export const unifiedSchema = personalInformationSchema
   .merge(healthSchemaObject)
   .merge(beforeProcedureSchema)
   .merge(afterProcedureObject)
-  .merge(signatureSchema);
+  .merge(signatureObject);

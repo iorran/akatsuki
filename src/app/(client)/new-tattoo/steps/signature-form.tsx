@@ -11,6 +11,7 @@ import { toast } from 'sonner';
 import { useState } from 'react';
 import { labels } from './questions';
 import { TattooDetails } from '@/app/(admin)/tattoo/[id]/tattoo-details';
+import { Checkbox } from '@/components/ui/checkbox';
 
 export const SignatureForm = () => {
     const setData = useNewTattooFormStore((state) => state.setData);
@@ -24,6 +25,7 @@ export const SignatureForm = () => {
         defaultValues: {
             artistSignature: '',
             clientSignature: '',
+            review: false,
             ...(data ?? {}),
         },
     });
@@ -54,17 +56,43 @@ export const SignatureForm = () => {
         toast.success("Novo registro criado.");
     };
 
+    const mapTattooToPreview = (data: Record<string, any>): any => {
+        return {
+            ...data,
+            healthQ1: data.healthQ1 ?? data?.healthRQ1,
+            healthQ2: data.healthQ2 ?? data?.healthRQ2,
+            healthQ3: data.healthQ3 ?? data?.healthRQ3,
+            healthQ4: data.healthQ4 ?? data?.healthRQ4,
+            birthday: new Date(data?.birthday).toISOString(),
+        }
+    }
+
     return (
         <Form {...form}>
-            <div className='flex flex-row gap-2 w-auto items-start'>
-                <div className="text-foreground font-semibold">Desenho:</div>
-                <div className="text-muted-foreground">{data?.art}</div>
-                <div className="text-foreground font-semibold">Preço:</div>
-                <div className="text-muted-foreground">{data?.price}</div>
-                <div className="text-foreground font-semibold">Onde irá tatuar:</div>
-                <div className="text-muted-foreground">{data?.bodyPart}</div>
-            </div>
+            <TattooDetails tattoo={mapTattooToPreview(data)} preview />
             <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-2 items-end mt-8'>
+                <FormField
+                    control={form.control}
+                    name="review"
+                    render={({ field }) => (
+                        <div className='w-full space-y-4 pb-8'>
+                            <FormItem className="flex flex-row items-center justify-center space-x-3 space-y-0">
+                                <FormControl>
+                                    <Checkbox
+                                        checked={field.value}
+                                        onCheckedChange={field.onChange}
+                                    />
+                                </FormControl>
+                                <div className="space-y-1 leading-none">
+                                    <FormLabel className='text-lg'>
+                                        Revisei os dados, bora tatuar!
+                                    </FormLabel>
+                                </div>
+                            </FormItem>
+                            <FormMessage />
+                        </div>
+                    )}
+                />
                 <FormField
                     control={form.control}
                     name="clientSignature"

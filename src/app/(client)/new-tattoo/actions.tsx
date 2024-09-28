@@ -3,12 +3,11 @@
 import { unifiedSchema } from "./schema";
 import { createClient } from '@/lib/supabase/server';
 import { revalidatePath } from "next/cache";
+import { z } from "zod";
 
 export async function submitForm(data: Record<string, any>): Promise<{ error?: string }> {
-
   // Validate the data using Zod schema
   const parsed = unifiedSchema.safeParse(data);
-  console.log(`parsed:`, parsed.error);
 
   if (!parsed.success) {
     return { error: parsed.error?.message };
@@ -21,6 +20,11 @@ export async function submitForm(data: Record<string, any>): Promise<{ error?: s
   }
 
   const supabase = createClient();
+
+  // removing
+  if (parsed?.data?.review) {
+    delete (parsed.data as Partial<z.output<typeof unifiedSchema>>).review;
+}
 
   // Insert the data into Supabase, including the correctly formatted birthday
   const { error } = await supabase.from("tattoo").insert([{

@@ -7,6 +7,7 @@ import { AccordionSection } from './accordion-section';
 
 interface TattooDetailsProps {
     tattoo: Tattoo
+    preview?: boolean
 }
 
 const personalDataFields = [
@@ -50,7 +51,7 @@ const signatureDataFields = [
     'clientSignature',
 ] as const;
 
-export const TattooDetails = ({ tattoo }: TattooDetailsProps) => {
+export const TattooDetails = ({ tattoo, preview = false }: TattooDetailsProps) => {
     return (
         <div className="flex flex-col space-y-4">
             {/* Dados Pessoais Accordion */}
@@ -84,27 +85,32 @@ export const TattooDetails = ({ tattoo }: TattooDetailsProps) => {
                 labels={labels}
                 variant='vertical'
             />
-            {/* Assinaturas Accordion using ImageSection */}
-            <ImageSection<Tattoo, typeof signatureDataFields[number]>
-                title="Assinaturas"
-                fields={signatureDataFields}
-                data={tattoo}
-                labels={labels}
-            />
-            {/* Insights Accordion */}
-            <AccordionSection
-                title="Insights"
-                value="Insights"
-                content={
-                    tattoo.notes ? (
-                        <div className="text-foreground whitespace-pre-line">
-                            {tattoo.notes}
-                        </div>
-                    ) : (
-                        <p>Nenhum insight adicionado.</p>
-                    )
-                }
-            />
+            {preview ? null : (
+                <>
+
+                    {/* Assinaturas Accordion using ImageSection */}
+                    < ImageSection<Tattoo, typeof signatureDataFields[number]>
+                        title="Assinaturas"
+                        fields={signatureDataFields}
+                        data={tattoo}
+                        labels={labels}
+                    />
+                    {/* Insights Accordion */}
+                    <AccordionSection
+                        title="Insights"
+                        value="Insights"
+                        content={
+                            tattoo.notes ? (
+                                <div className="text-foreground whitespace-pre-line">
+                                    {tattoo.notes}
+                                </div>
+                            ) : (
+                                <p>Nenhum insight adicionado.</p>
+                            )
+                        }
+                    />
+                </>
+            )}
         </div>
     );
 };

@@ -20,7 +20,7 @@ type ValidFieldKeys<T> = {
 // Utility functions
 const formatValue = (value: any, field: any) => {
     try {
-        if (value === null) {
+        if (value === null || value === undefined) {
             return 'N/A'
         }
         
@@ -34,7 +34,8 @@ const formatValue = (value: any, field: any) => {
                 return format(parsedDate, 'dd/MM/yyyy');
             }
         }
-    } catch {
+    } catch (error) {
+        console.log(`error:`, error)
         return 'Unsupported Type';
     }
     return value;
