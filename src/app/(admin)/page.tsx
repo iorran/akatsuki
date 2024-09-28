@@ -1,4 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs"
+import { PendingTasks } from "./tattoo-alerts/pending-taks";
 import { LoadingSkeleton, TattooAlerts } from "./tattoo-alerts/tattoo-alerts";
 import { Suspense } from "react";
 
@@ -36,7 +37,7 @@ export default function Home() {
       </TabsContent>
       <TabsContent value="pending">
         <Suspense fallback={<LoadingSkeleton />}>
-          Em construção
+          <PendingTasks />
         </Suspense>
       </TabsContent>
     </Tabs>
