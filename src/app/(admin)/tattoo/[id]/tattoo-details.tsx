@@ -1,5 +1,5 @@
 import React from 'react';
-import { getTattooById, Tattoo } from '@/lib/db/queries/select';
+import { Tattoo } from '@/lib/db/queries/select';
 import { DataSection } from './data-section';
 import { ImageSection } from './image-section';
 import { labels } from '../../../(client)/new-tattoo/steps/questions'; // Import the custom labels mapping
@@ -54,6 +54,7 @@ const signatureDataFields = [
 export const TattooDetails = ({ tattoo, preview = false }: TattooDetailsProps) => {
     return (
         <div className="flex flex-col space-y-4">
+            {JSON.stringify(tattoo)}
             {/* Dados Pessoais Accordion */}
             <DataSection<Tattoo, typeof personalDataFields[number]>
                 title="Dados pessoais"
@@ -105,7 +106,7 @@ export const TattooDetails = ({ tattoo, preview = false }: TattooDetailsProps) =
                                     {tattoo.notes}
                                 </div>
                             ) : (
-                                <p>Nenhum insight adicionado.</p>
+                                <div>Nenhum insight adicionado.</div>
                             )
                         }
                     />

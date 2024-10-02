@@ -23,12 +23,12 @@ export const TattooCard = ({ tattoo, period, showDate =false }: TattooCardProps)
                 <Link className="space-y-2" href={`/tattoo/${tattoo.id}`}>
                     <CardTitle>{tattoo.name}</CardTitle>
                     <CardDescription className="flex flex-col">
-                        <div>
+                        <span>
                             {tattoo.email}
-                        </div>
-                        {showDate ? (<div>
+                        </span>
+                        {showDate ? (<span>
                             Tatuado em: {format(tattoo.createdAt, 'dd/MM/yyyy')}
-                        </div>): null}
+                        </span>): null}
                     </CardDescription>
                 </Link>
                 <div className="flex flex-row items-center gap-4">

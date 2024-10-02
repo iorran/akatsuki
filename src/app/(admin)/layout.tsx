@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Toaster } from "../../components/ui/sonner"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../../components/ui/tooltip";
-import { Home, Settings, TabletSmartphoneIcon } from "lucide-react";
+import { Home, Settings, TabletSmartphoneIcon, BarChart } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -29,6 +29,18 @@ export default function AdminLayout({
               </Link>
             </TooltipTrigger>
             <TooltipContent side="right">Home</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Link
+                href="/dashboard"
+                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+              >
+                <BarChart className="h-5 w-5" />
+                <span className="sr-only">Dashboard</span>
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent side="right">Dashboard</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>

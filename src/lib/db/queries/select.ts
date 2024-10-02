@@ -2,6 +2,23 @@ import { sql, eq } from 'drizzle-orm';
 import { db } from '../index';
 import { SelectTattoo, tattooTable } from '../schema';
 
+export async function getMonthsAndPrices(): Promise<{ month: number; totalPrice: number }[]> {
+  const query = sql`
+      SELECT
+        EXTRACT(MONTH FROM "createdAt") AS month,
+        "price"
+      FROM
+        tattoo
+  `;
+
+  try {
+    return await db.execute(query);
+  } catch (error) {
+    console.error('Error executing raw SQL query:', error);
+    throw error;
+  }
+}
+
 export async function getTattooById(id: SelectTattoo['id']) {
   return db
     .select()
@@ -10,7 +27,6 @@ export async function getTattooById(id: SelectTattoo['id']) {
 }
 
 export async function getPendingTattoos() {
-  // Define the raw SQL query using Drizzle's sql tagged template
   const query = sql<Tattoo>`
   SELECT *
   FROM "tattoo"
