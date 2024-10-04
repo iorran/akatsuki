@@ -54,7 +54,6 @@ const signatureDataFields = [
 export const TattooDetails = ({ tattoo, preview = false }: TattooDetailsProps) => {
     return (
         <div className="flex flex-col space-y-4">
-            {JSON.stringify(tattoo)}
             {/* Dados Pessoais Accordion */}
             <DataSection<Tattoo, typeof personalDataFields[number]>
                 title="Dados pessoais"
