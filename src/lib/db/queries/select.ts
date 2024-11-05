@@ -41,6 +41,7 @@ export async function getPendingTattoos() {
       ( "createdAt" >= DATE_TRUNC('day', NOW() - INTERVAL '2 months') 
         AND "createdAt" < DATE_TRUNC('day', NOW() - INTERVAL '2 months') + INTERVAL '1 day' )
     )
+    ORDER BY "createdAt" ASC;
 `;
 
   try {
