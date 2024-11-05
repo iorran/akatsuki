@@ -33,9 +33,9 @@ export const tattooTable = pgTable('tattoo', {
   artistSignature: text('artistSignature').notNull(),
   clientSignature: text('clientSignature').notNull(),
 
-  message2Days: timestamp('message2Days', { withTimezone: true }),
-  message2Weeks: timestamp('message2Weeks', { withTimezone: true }),
-  message2Months: timestamp('message2Months', { withTimezone: true }),
+  message2Days: date('message2Days'),
+  message2Weeks: date('message2Weeks'),
+  message2Months: date('message2Months'),
 
   notes: text('notes'),
 

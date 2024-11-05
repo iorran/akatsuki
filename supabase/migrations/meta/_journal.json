@@ -8,6 +8,13 @@
       "when": 1727206982099,
       "tag": "0000_rich_monster_badoon",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1728051087162,
+      "tag": "0001_sweet_warbound",
+      "breakpoints": true
     }
   ]
 }
