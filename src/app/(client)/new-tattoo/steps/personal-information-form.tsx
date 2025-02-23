@@ -151,7 +151,7 @@ export function PersonalInformationForm() {
                     control={form.control}
                     name="promotions"
                     render={({ field }) => (
-                        <FormItem className="flex flex-row items-center space-x-3 space-y-0">
+                        <FormItem className="flex flex-row items-center space-x-3 space-y-0 w-full">
                             <FormControl>
                                 <Checkbox
                                     checked={field.value}
