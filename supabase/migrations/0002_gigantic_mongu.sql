@@ -1,0 +1,1 @@
+ALTER TABLE "tattoo" ADD COLUMN "promotions" boolean DEFAULT true NOT NULL;

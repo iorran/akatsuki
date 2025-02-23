@@ -14,6 +14,7 @@ import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { labels } from './questions';
+import { Checkbox } from '@/components/ui/checkbox';
 
 export function PersonalInformationForm() {
     const data = useNewTattooFormStore((state) => state.data);
@@ -28,6 +29,7 @@ export function PersonalInformationForm() {
             birthday: undefined,
             document: '',
             whereFoundUs: '',
+            promotions: true,
             ...(data ?? {}),
             ...(data.birthday ? { birthday: new Date(data.birthday) }: {})
         }
@@ -145,6 +147,26 @@ export function PersonalInformationForm() {
                         </FormItem>
                     )}
                 />
+                <FormField
+                    control={form.control}
+                    name="promotions"
+                    render={({ field }) => (
+                        <FormItem className="flex flex-row items-center space-x-3 space-y-0">
+                            <FormControl>
+                                <Checkbox
+                                    checked={field.value}
+                                    onCheckedChange={field.onChange}
+                                />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                                <FormLabel>
+                                    {labels.promotions}
+                                </FormLabel>
+                            </div>
+                        </FormItem>
+                    )}
+                />
+                <FormMessage />
                 <Button type="submit" className="w-1/4">Próximo</Button>
             </form>
         </Form>

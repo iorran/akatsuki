@@ -15,6 +15,20 @@
       "when": 1728051087162,
       "tag": "0001_sweet_warbound",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1740327578045,
+      "tag": "0002_gigantic_mongu",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1740327911885,
+      "tag": "0003_fixed_dormammu",
+      "breakpoints": true
     }
   ]
 }

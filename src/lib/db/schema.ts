@@ -8,6 +8,7 @@ export const tattooTable = pgTable('tattoo', {
   document: text('document').notNull(),
   birthday: date('birthday').notNull(),
   whereFoundUs: text('whereFoundUs'),
+  promotions: boolean('promotions').notNull().default(true),
 
   healthRQ1: text('healthRQ1').notNull(),
   healthQ1: text('healthQ1'),
@@ -33,9 +34,9 @@ export const tattooTable = pgTable('tattoo', {
   artistSignature: text('artistSignature').notNull(),
   clientSignature: text('clientSignature').notNull(),
 
-  message2Days: date('message2Days'),
-  message2Weeks: date('message2Weeks'),
-  message2Months: date('message2Months'),
+  message2Days: text('message2Days'),
+  message2Weeks: text('message2Weeks'),
+  message2Months: text('message2Months'),
 
   notes: text('notes'),
 

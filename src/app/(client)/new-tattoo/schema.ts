@@ -17,6 +17,7 @@ export const personalInformationSchema = z.object({
   }),
   birthday: z.date(),
   whereFoundUs: z.string().trim(),
+  promotions: z.boolean().optional(),
 });
 
 const healthSchemaObject = z.object({

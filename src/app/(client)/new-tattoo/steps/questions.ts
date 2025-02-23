@@ -8,6 +8,7 @@ export const labels: Partial<Record<keyof z.output<typeof unifiedSchema>, string
     document: "Documento",
     birthday: "Data de Nascimento",
     whereFoundUs: "Onde nos encontrou?",
+    promotions: "Autorizo a Akatsuki Tattoo Lisboa a enviar e-mails com promoções, cupons de desconto e novidades.",
     healthQ1: 'Indique se há diagnóstico positivo para Hepatite B e C, HIV/AIDS, sífilis, tuberculose, herpes, eczema, psoríase, acne, rosácea, diabetes, distúrbios de coagulação sanguínea, problemas cardíacos, doenças autoimunes, câncer, epilepsia, gravidez, queloide, anemia, hemofilia ou doença autoimune, vitiligo.',
     healthQ2: 'Você já teve alguma reação alérgica a pigmentos de tatuagem ou outras tintas?',
     healthQ3: 'Você está tomando algum medicamento que possa afetar a cicatrização?',
